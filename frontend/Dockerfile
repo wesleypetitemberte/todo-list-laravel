@@ -1,7 +1,18 @@
-FROM nginx:alpine
+# Use uma imagem base do Node.js
+FROM node:16-alpine
 
-# Copia seus arquivos (HTML, JS, etc) para o diretório público do NGINX
-COPY . /usr/share/nginx/html
+# Defina o diretório de trabalho no container
+WORKDIR /var/www/html
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Copie os arquivos do projeto para o container
+COPY . .
+
+# Instale as dependências do projeto
+RUN npm install
+
+# Exponha a porta que o servidor usará
+EXPOSE 5442
+
+# Comando para iniciar o servidor
+CMD ["npm", "run", "start"]
+

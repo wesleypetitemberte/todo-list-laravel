@@ -75,7 +75,4 @@ angular.module('app').constant('API_URL', 'http://localhost:8000/api');
 ```
 
 ---
-
-## 🤝 Contribuir
-
-Abrir issue ou PR.
+✨ _Projeto desenvolvido pela Wesley Petitemberte_
