@@ -26,7 +26,7 @@ angular.module('todoApp').controller('RegisterController', function($scope, $loc
         AuthService.register($scope.user).then(function(response) {
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
-                $location.path('/home');
+                $location.path('/');
             } else {
                 console.error('Token is undefined');
                 $scope.messageFeedback = 'Falha no login!';
