@@ -1,0 +1,54 @@
+<section class="container mt-4" ng-controller="HomeController">
+    <h1 class="text-center mb-4">Cadastro de Tarefas</h1>
+
+    <form ng-submit="saveTask()" class="mb-4">
+        <div class="row">
+        <div class="col-12 mb-lg-0 mb-4 col-lg-4">
+            <label for="title">Título:</label>
+            <input type="text" ng-model="task.title" name="title" class="form-control mb-0" placeholder="Título do tarefa" required />
+        </div>
+        <div class="col-12 mb-lg-0 mb-4 col-lg-4">
+            <label for="description">Descrição:</label>
+            <input type="text" ng-model="task.description" name="description" class="form-control mb-0" placeholder="Descrição do tarefa" required />
+        </div>
+        <div class="col-12 mb-lg-0 mb-4 col-lg-2">
+            <label for="due_date">Data Limite:</label>
+            <input type="date" id="due_date" ng-model="task.due_date" name="due_date" class="form-control mb-0" required />
+        </div>
+        <div class="col-12 col-lg-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100" title="{{ editMode ? 'Atualizar' : 'Adicionar'}} tarefa">
+                {{ editMode ? "Atualizar" : "Adicionar" }}
+            </button>
+        </div>
+        </div>
+    </form>
+
+    <table ng-if="tasks.length > 0" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tarefa</th>
+                <th>Descrição</th>
+                <th>Data Limite</th>
+                <th>Concluída</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="let task of tasks">
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.due_date }}</td>
+                <td>{{ task.is_done }}</td>
+                <td class="d-flex gap-2 flex-lg-row flex-column">
+                    <button ng-click="doneTask(task.id)" type="button" class="btn btn-success btn-sm" title="Feito">Feito</button>
+                    <button ng-click="editTask(task)" type="button" class="btn btn-primary btn-sm" title="Editar">Editar</button>
+                    <button ng-click="deleteTask(task.id!)" type="button" class="btn btn-danger btn-sm" title="Excluir">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 ng-if="tasks.length == 0 || !tasks" class="text-center">Nenhuma tarefa encontrado!</h4>
+</section>

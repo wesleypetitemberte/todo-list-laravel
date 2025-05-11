@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TODO List</title>
-<script src="node_modules/angular/angular.min.js"></script>
-</head>
-<body>
-    <div ng-app="myApp" ng-controller="myController">
-        <h1>{{ mensagem }}</h1>
-    </div>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TODO List</title>
+        <base href="/">
+        <meta name="description" content="Uma aplicação de exemplo para gerenciar tarefas.">
+        <meta name="keywords" content="TODO, tarefas, gerenciamento">
+        <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/styles/style.css">
 
-    <script src="app.js"></script>
-</body>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-route/angular-route.min.js"></script>
+        <script src="node_modules/jwt-decode/build/cjs/index.js"></script>
+    </head>
+    <body ng-app="todoApp">
+        <main>
+            <div class="d-flex justify-content-center">
+                <img src="public/images/todo-list.png" alt="Todo List" width="400" height="120" class="img-fluid">
+            </div>
+            
+            <!-- Área que troca dinamicamente com base na rota -->
+            <div ng-view></div>
+        </main>
+
+        <!-- App scripts -->
+        <script src="app/app.module.js"></script>
+        <script src="app/app.routes.js"></script>
+
+        <!-- Controllers -->
+        <script src="app/pages/home/home.controller.js"></script>
+        <script src="app/pages/login/login.controller.js"></script>
+
+        <script src="app/services/task.service.js"></script>
+        <script src="app/services/middleware/auth.interceptor.js"></script>
+    </body>
 </html>
