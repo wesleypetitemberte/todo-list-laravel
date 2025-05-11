@@ -1,9 +1,15 @@
-angular.module('todoApp').controller('RegisterController', function($scope, $location, AuthService) {
+angular.module('todoApp').controller('RegisterController', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
     $scope.user = {
         email: '',
         password: '',
         password2: ''
     };
+
+    $scope.fields = [
+        { name: 'email', title: 'Email', type: 'email', placeholder: 'Digite seu email', required: true },
+        { name: 'password', title: 'Senha', type: 'password', placeholder: 'Digite sua senha', required: true },
+        { name: 'password2', title: 'Confirme sua senha', type: 'password', placeholder: 'Digite sua senha novamente', required: true }
+    ];
 
     $scope.messageFeedback = 'Falha no login!';
     $scope.showMessage = false;
@@ -43,4 +49,4 @@ angular.module('todoApp').controller('RegisterController', function($scope, $loc
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-});
+}]);

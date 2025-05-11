@@ -1,0 +1,20 @@
+<form ng-submit="$ctrl.onSubmit()" class="mb-4">
+    <div class="row flex-column">
+        <div class="col-12 mb-4" ng-repeat="field in $ctrl.fields">
+            <label for="{{field.name}}">{{field.title}}</label>
+            <input 
+                type="{{field.type || 'text'}}" 
+                id="{{field.name}}" 
+                ng-model="$ctrl.data[field.name]" 
+                name="{{field.name}}" 
+                class="form-control mb-0" 
+                placeholder="{{field.placeholder}}" 
+                ng-required="field.required" />
+        </div>
+        <div class="col-12 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100" title="{{$ctrl.buttonTitle}}">
+                {{$ctrl.buttonTitle}}
+            </button>
+        </div>
+    </div>
+</form>

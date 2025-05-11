@@ -1,8 +1,13 @@
-angular.module('todoApp').controller('LoginController', function($scope, AuthService, $location) {
+angular.module('todoApp').controller('LoginController', ['$scope', 'AuthService', '$location', function($scope, AuthService, $location) {
     $scope.user = {
         email: '',
         password: ''
     };
+
+    $scope.fields = [
+        { name: 'email', title: 'Email', type: 'email', placeholder: 'Digite seu email', required: true },
+        { name: 'password', title: 'Senha', type: 'password', placeholder: 'Digite sua senha', required: true }
+    ];
 
     $scope.messageFeedback = 'Falha no login!';
     $scope.showMessage = false;
@@ -20,4 +25,4 @@ angular.module('todoApp').controller('LoginController', function($scope, AuthSer
             $scope.showMessage = true;
         });
     };
-});
+}]);

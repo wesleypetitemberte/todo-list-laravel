@@ -1,22 +1,11 @@
-
 <section class="container mt-4" ng-controller="LoginController">
     <h1 class="text-center mb-4">Login</h1>
 
-    <form ng-submit="login()" class="mb-4">
-        <div class="row flex-column">
-            <div class="col-12 mb-4">
-                <label for="email">Email</label>
-                <input type="email" id="email" ng-model="user.email" name="email" class="form-control mb-0" placeholder="Digite seu email" required />
-            </div>
-            <div class="col-12 mb-4">
-                <label for="password">Senha</label>
-                <input type="password" id="password" ng-model="user.password" name="password" class="form-control mb-0" placeholder="Digite sua senha" required />
-            </div>
-            <div class="col-12 d-flex align-items-end">
-                <button type="submit" class="btn btn-success w-100" title="Entrar">Entrar</button>
-            </div>
-        </div>
-    </form>
+    <login-form 
+        fields="fields" 
+        on-submit="login()" 
+        button-title="Entrar">
+    </login-form>
 
     <span ng-if="showMessage" class="text-center mb-2 text-danger">{{messageFeedback}}</span>
 

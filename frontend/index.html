@@ -16,22 +16,53 @@
         <script src="node_modules/jwt-decode/build/cjs/index.js"></script>
     </head>
     <body ng-app="todoApp">
+        <header class="container d-flex flex-row justify-content-between shadow">
+            <a href="#!/" title="Home">
+                <img src="public/images/main-logo.png" alt="Todo List" width="200" height="60" class="img-fluid">
+            </a>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav d-flex gap-4">
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold" href="#!/" title="Home">Home</a>
+                            </li>
+                            <li class="nav-item" ng-if="localStorage.getItem('token')">
+                                <a class="nav-link fw-bold" href="#!/logout" title="Sair">Sair</a>
+                            </li>
+                            <li class="nav-item" ng-if="!localStorage.getItem('token')">
+                                <a class="nav-link fw-bold" href="#!/login" title="Login">Login</a>
+                            </li>
+                            <li class="nav-item" ng-if="!localStorage.getItem('token')">
+                                <a class="nav-link fw-bold" href="#!/registrar" title="Registrar">Registrar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
         <main>
-            <div class="d-flex justify-content-center">
-                <img src="public/images/todo-list.png" alt="Todo List" width="400" height="120" class="img-fluid">
-            </div>
-            
-            <!-- Área que troca dinamicamente com base na rota -->
             <div ng-view></div>
         </main>
 
-        <!-- App scripts -->
+        <footer class="bg-white shadow">
+            <div class="container d-flex flex-row justify-content-between small text-dark">
+                <p class="mb-0">© 2025 TODO List</p>
+                <p class="mb-0">✨ Desenvolvido por <a href="https://github.com/wesleypetitemberte" target="_blank" rel="noopener noreferrer" class="text-dark text-decoration-none">Wesley Petitemberte</a></p>
+            </div>
+        </footer>
+
         <script src="app/app.module.js"></script>
         <script src="app/app.routes.js"></script>
 
-        <!-- Controllers -->
         <script src="app/pages/home/home.controller.js"></script>
         <script src="app/pages/login/login.controller.js"></script>
+        <script src="app/components/login-form/login-form.component.js"></script>
 
         <script src="app/services/task.service.js"></script>
         <script src="app/services/interceptors/auth.interceptor.js"></script>

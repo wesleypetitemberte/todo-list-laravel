@@ -48,7 +48,7 @@ angular.module('todoApp').controller('HomeController', ['$scope', 'TaskService',
 
     // Função para marcar tarefa como feita
     $scope.markTaskAsDone = function(id) {
-        TaskService.markAsDone(id).then(function() {
+        TaskService.setTaskAsDone(id).then(function() {
             $scope.getTasks();
         });
     };

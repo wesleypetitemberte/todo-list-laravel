@@ -39,7 +39,7 @@ angular.module('todoApp').service('TaskService', ['$http', function($http) {
         return handleRequest($http.delete(`${API_URL}/tasks/${taskId}`, getConfig()));
     };
 
-    this.markAsDone = function(taskId) {
+    this.setTaskAsDone = function(taskId) {
         return handleRequest($http.patch(`${API_URL}/tasks/${taskId}`, { is_done: true }, getConfig()));
     };
 }]);
