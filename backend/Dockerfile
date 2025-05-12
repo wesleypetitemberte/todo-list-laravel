@@ -23,7 +23,8 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Ajustar permissões para o Laravel
 RUN chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html
 
 # Expor a porta
 EXPOSE 9000

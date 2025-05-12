@@ -30,6 +30,7 @@ Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.
    ```
 4. Gere chave e migre DB:
    ```bash
+   docker compose exec app composer install
    docker compose exec app php artisan key:generate 
    docker compose exec app php artisan jwt:secret 
    docker compose exec app php artisan migrate
