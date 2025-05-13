@@ -16,6 +16,11 @@ class TaskRepository
         return Task::all();
     }
 
+    public function getAllByUser(int $userId)
+    {
+        return Task::where('user_id', $userId)->get();
+    }
+
     /**
      * Find a task by ID.
      *

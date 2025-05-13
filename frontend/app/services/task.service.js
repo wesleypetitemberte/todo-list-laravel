@@ -4,7 +4,6 @@ angular.module('todoApp').service('TaskService', ['$http', function($http) {
     function getConfig() {
         return {
             headers: {
-                'x-api-key': 'SUA_API_KEY',
                 'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
             }
         };

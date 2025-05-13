@@ -35,6 +35,32 @@ class AuthController extends Controller
         }
     }
 
+    public function register(Request $request)
+    {
+        // Validação dos dados recebidos
+        $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'password2' => 'required|same:password'
+        ]);
+
+        // Criação do usuário
+        $user = User::create([
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        // Geração do token JWT
+        $token = JWTAuth::fromUser($user);
+
+        // Retorno da resposta
+        return response()->json([
+            'message' => 'Usuário registrado com sucesso!',
+            'user' => $user,
+            'token' => $token
+        ]);
+    }
+
     public function me()
     {
         try {

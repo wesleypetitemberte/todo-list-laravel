@@ -23,6 +23,12 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
             return;
         }
 
+        if (!isValidPassword($scope.user.password)) {
+            $scope.messageFeedback = 'A senha deve ter pelo menos 6 caracteres, incluindo letras e números!';
+            $scope.showMessage = true;
+            return;
+        }
+
         if (!isValidEmail($scope.user.email)) {
             $scope.messageFeedback = 'Email inválido!';
             $scope.showMessage = true;
@@ -34,12 +40,14 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
                 localStorage.setItem('token', response.data.token);
                 $location.path('/');
             } else {
+                console.log('ERRO NO REGISTRO: ', response.data);
+                
                 console.error('Token is undefined');
                 $scope.messageFeedback = 'Falha no login!';
                 $scope.showMessage = true;
             }
         }).catch(function(error) {
-            console.error(error);
+            console.error('ERRO NO ENVIO: ', error);
             $scope.messageFeedback = 'Falha no login!';
             $scope.showMessage = true;
         });
@@ -48,5 +56,10 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+
+    function isValidPassword(password) {
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+        return passwordRegex.test(password);
     }
 }]);

@@ -1,15 +1,17 @@
 angular.module('todoApp').component('loginForm', {
     bindings: {
-        fields: '<', // Recebe os campos do formulário
+        fields: '<',
         onSubmit: '&',
-        buttonTitle: '@' // Recebe o título do botão como string
+        buttonTitle: '@',
+        data: '='
     },
     templateUrl: 'app/components/login-form/login-form.template.html',
-    controller: function () {
-        this.$onInit = function () {
-            console.log('Data:', this.data);
-            console.log('Fields:', this.fields);
-            console.log('Button Title:', this.buttonTitle);
+    controller: function() {
+        var $ctrl = this;
+        $ctrl.data = {};
+
+        $ctrl.submit = function() {
+            $ctrl.onSubmit({ data: $ctrl.data }); // envia os dados para o pai
         };
     }
 });

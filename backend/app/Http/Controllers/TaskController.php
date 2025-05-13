@@ -16,7 +16,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        return response()->json($this->taskRepository->getAll());
+        return response()->json($this->taskRepository->getAllByUser(auth()->id()));
     }
 
     public function store(Request $request)
@@ -27,6 +27,8 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
             'is_done' => 'boolean',
         ]);
+
+        $data['user_id'] = auth()->id();
 
         return response()->json($this->taskRepository->create($data), 201);
     }
