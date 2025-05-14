@@ -57,7 +57,7 @@ class TaskController extends Controller
             return response()->json(['message' => 'Task not found'], 404);
         }
 
-        return response()->json(['message' => 'Task updated successfully']);
+        return response()->json(['message' => 'Task updated successfully'], 200);
     }
 
     public function destroy($id)
@@ -66,6 +66,15 @@ class TaskController extends Controller
             return response()->json(['message' => 'Task not found'], 404);
         }
 
-        return response()->json(['message' => 'Task deleted successfully']);
+        return response()->json(['message' => 'Task deleted successfully'], 200);
+    }
+
+    public function partialUpdate($id)
+    {
+        if (!$this->taskRepository->markAsDone($id)) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
+
+        return response()->json(['message' => 'Task done successfully'], 200);
     }
 }

@@ -2,13 +2,14 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
     $scope.user = {
         email: '',
         password: '',
-        password2: ''
+        password_confirmation: ''
     };
 
     $scope.fields = [
+        { name: 'name', title: 'Nome', type: 'text', placeholder: 'Digite seu nome', required: true },
         { name: 'email', title: 'Email', type: 'email', placeholder: 'Digite seu email', required: true },
         { name: 'password', title: 'Senha', type: 'password', placeholder: 'Digite sua senha', required: true },
-        { name: 'password2', title: 'Confirme sua senha', type: 'password', placeholder: 'Digite sua senha novamente', required: true }
+        { name: 'password_confirmation', title: 'Confirme sua senha', type: 'password', placeholder: 'Digite sua senha novamente', required: true }
     ];
 
     $scope.messageFeedback = 'Falha no login!';
@@ -17,7 +18,7 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
     $scope.register = function() {
         $scope.showMessage = false;
 
-        if ($scope.user.password !== $scope.user.password2) {
+        if ($scope.user.password !== $scope.user.password_confirmation) {
             $scope.messageFeedback = 'As senhas não coincidem!';
             $scope.showMessage = true;
             return;
@@ -36,12 +37,10 @@ angular.module('todoApp').controller('RegisterController', ['$scope', '$location
         }
 
         AuthService.register($scope.user).then(function(response) {
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
+            if (response.token) {
+                localStorage.setItem('token', response.token);
                 $location.path('/');
             } else {
-                console.log('ERRO NO REGISTRO: ', response.data);
-                
                 console.error('Token is undefined');
                 $scope.messageFeedback = 'Falha no login!';
                 $scope.showMessage = true;

@@ -67,4 +67,20 @@ class TaskRepository
         $task = $this->findById($id);
         return $task ? $task->delete() : false;
     }
+
+        /**
+     * Delete a task by ID.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function markAsDone(int $id): bool
+    {
+        $task = $this->findById($id);
+        if ($task) {
+            $task->is_done = true;
+            return $task->save();
+        }
+        return false;
+    }
 }

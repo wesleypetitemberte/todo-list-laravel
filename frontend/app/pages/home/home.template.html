@@ -26,25 +26,23 @@
     <table ng-if="tasks.length > 0" class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Tarefa</th>
-                <th>Descrição</th>
-                <th>Data Limite</th>
-                <th>Concluída</th>
-                <th>Ações</th>
+                <th class="text-table">Tarefa</th>
+                <th class="d-none d-sm-table-cell text-table">Descrição</th>
+                <th class="text-table">Data Limite</th>
+                <th class="text-table">Status</th>
+                <th class="text-table">Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="let task of tasks">
-                <td>{{ task.id }}</td>
+            <tr ng-repeat="task in tasks" class="small">
                 <td>{{ task.title }}</td>
-                <td>{{ task.description }}</td>
-                <td>{{ task.due_date }}</td>
-                <td>{{ task.is_done }}</td>
-                <td class="d-flex gap-2 flex-lg-row flex-column">
-                    <button ng-click="doneTask(task.id)" type="button" class="btn btn-success btn-sm" title="Feito">Feito</button>
-                    <button ng-click="editTask(task)" type="button" class="btn btn-primary btn-sm" title="Editar">Editar</button>
-                    <button ng-click="deleteTask(task.id!)" type="button" class="btn btn-danger btn-sm" title="Excluir">Excluir</button>
+                <td class="d-none d-sm-table-cell">{{ task.description }}</td>
+                <td>{{ task.due_date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ task.is_done == 1 ? 'Feito' : 'Pendente' }}</td>
+                <td class="d-flex gap-1 flex-lg-row flex-column">
+                    <button ng-click="markTaskAsDone(task.id)" ng-disabled="task.is_done == 1" type="button" class="btn btn-success btn-sm px-2 py-1" title="Feito">Feito</button>
+                    <button ng-click="editTask(task)" type="button" class="btn btn-primary btn-sm px-2 py-1" title="Editar">Editar</button>
+                    <button ng-click="deleteTask(task.id)" type="button" class="btn btn-danger btn-sm px-2 py-1" title="Excluir">Excluir</button>
                 </td>
             </tr>
         </tbody>

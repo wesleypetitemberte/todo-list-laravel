@@ -25,8 +25,11 @@ class AuthController extends Controller
             if ($token = JWTAuth::attempt($credentials)) {
                 $user = Auth::user();
                 return response()->json([
+                    'message' => 'Usuário logado com sucesso!',
                     'token' => $token,
-                    'user' => $user
+                    'user' => $user,
+                    'token_type' => 'bearer',
+                    'expires_in' => auth()->factory()->getTTL() * 60
                 ]);
             }
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -39,13 +42,15 @@ class AuthController extends Controller
     {
         // Validação dos dados recebidos
         $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
-            'password2' => 'required|same:password'
+            'password_confirmation' => 'required|same:password'
         ]);
 
         // Criação do usuário
         $user = User::create([
+            'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
@@ -57,7 +62,9 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Usuário registrado com sucesso!',
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 

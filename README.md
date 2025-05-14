@@ -2,6 +2,8 @@
 
 Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.6 no front‑end, autenticação JWT e ambiente Docker.
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue)](https://www.linkedin.com/in/wesley-petitemberte/)
+
 ---
 
 ## 🔧 Tecnologias
@@ -26,7 +28,8 @@ Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.
    ```
 3. Suba containers:
    ```bash
-   docker compose up -d --build
+   docker compose build
+   docker compose up -d
    ```
 4. Gere chave e migre DB:
    ```bash
@@ -35,17 +38,17 @@ Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.
    docker compose exec app php artisan jwt:secret 
    docker compose exec app php artisan migrate
    ```
-5. Instale front:
-   ```bash
-   cd frontend && npm install
-   ```
-6. Acesse:
+5. Acesse:
    - API: http://localhost:8000/api
-   - UI: http://localhost:8080
+   - FRONTEND: http://localhost:5442
+6. Execute testes:
+   ```bash
+   docker compose exec app php artisan test
+   ```
 
 ---
 
-## 📦 Endpoints Básicos
+## 📦 Endpoints
 
 | Método | Rota             | Ação            |
 | ------ | ---------------- | --------------- |
@@ -53,25 +56,15 @@ Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.
 | POST   | `/api/tasks`     | Criar tarefa    |
 | PUT    | `/api/tasks/:id` | Atualizar tarefa|
 | DELETE | `/api/tasks/:id` | Deletar tarefa  |
-
-Use header `Authorization: Bearer <token>` para rotas protegidas.
-
----
-
-## 📝 Front‑end
-
-Em `frontend/config.js`, aponte para sua API:
-```js
-angular.module('app').constant('API_URL', 'http://localhost:8000/api');
-```
+| PATCH  | `/api/tasks/:id` | Concluí tarefa  |
 
 ---
 
 ## 🛠️ Estrutura
 
 ```
-├── backend/      # Laravel
-├── frontend/     # AngularJS
+├── backend/      # Laravel 10
+├── frontend/     # AngularJS 1.6
 └── docker-compose.yml
 ```
 

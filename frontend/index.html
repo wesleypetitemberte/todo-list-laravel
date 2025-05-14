@@ -32,13 +32,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold" href="#!/" title="Home">Home</a>
                                 </li>
-                                <li class="nav-item" ng-if="localStorage.getItem('token')">
-                                    <a class="nav-link fw-bold" href="#!/logout" title="Sair">Sair</a>
-                                </li>
                                 <li class="nav-item" ng-if="isAuthenticated">
+                                    <div role="button" ng-click="logout()" class="nav-link fw-bold" title="Sair">Sair</div>
+                                </li>
+                                <li class="nav-item" ng-if="!isAuthenticated">
                                     <a class="nav-link fw-bold" href="#!/login" title="Login">Login</a>
                                 </li>
-                                <li class="nav-item" ng-if="isAuthenticated">
+                                <li class="nav-item" ng-if="!isAuthenticated">
                                     <a class="nav-link fw-bold" href="#!/registrar" title="Registrar">Registrar</a>
                                 </li>
                             </ul>
@@ -75,7 +75,6 @@
         <script src="app/app.controller.js"></script>
         <script src="app/pages/home/home.controller.js"></script>
         <script src="app/pages/login/login.controller.js"></script>
-        <script src="app/pages/logout/logout.controller.js"></script>
         <script src="app/pages/register/register.controller.js"></script>
 
         <script src="app/components/login-form/login-form.component.js"></script>

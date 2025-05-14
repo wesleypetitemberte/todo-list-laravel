@@ -1,4 +1,4 @@
-angular.module('todoApp').controller('LoginController', ['$scope', 'AuthService', '$location', function($scope, AuthService, $location) {
+angular.module('todoApp').controller('LoginController', ['$scope', 'AuthService', '$location', '$rootScope', function($scope, AuthService, $location, $rootScope) {
     $scope.user = {
         email: '',
         password: ''
@@ -17,7 +17,8 @@ angular.module('todoApp').controller('LoginController', ['$scope', 'AuthService'
 
         AuthService.login($scope.user.email, $scope.user.password)
         .then(function(response) {
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.token);
+            $rootScope.isAuthenticated = true;
             $location.path('/');
         })
         .catch(function(error) {

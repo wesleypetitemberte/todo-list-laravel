@@ -6,9 +6,8 @@ use Closure;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Middleware\Jwt as Middleware;
 
-class Jwt extends Middleware
+class Jwt
 {
     /**
      * Handle an incoming request.

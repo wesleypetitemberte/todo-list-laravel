@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
-        return []; // Ex: ['role' => 'admin'] se quiser adicionar
+        return [];
     }
 
     public function tasks()
