@@ -16,7 +16,7 @@ Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.
 
 ---
 
-## 🚀 Rápido Start
+## 🚀 Start do projeto
 
 1. Clone o repo:
    ```bash
