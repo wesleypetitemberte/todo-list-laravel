@@ -1,5 +1,4 @@
-# Todo-List CRUD
-# (Laravel 10 + AngularJS 1.6 + JWT + Docker)
+# Todo-List CRUD (Laravel 10 + AngularJS 1.6 + JWT + Docker)
 
 Projeto de lista de tarefas (CRUD) usando Laravel 10 no back‑end, AngularJS 1.6 no front‑end, autenticação JWT e ambiente Docker.
 
