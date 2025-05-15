@@ -1,7 +1,7 @@
 services:
   #LARAVEL
   app:
-    container_name: todolist-dev
+    container_name: todolist-backend-dev
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -72,8 +72,8 @@ services:
       - app-network
 
   #ANGULAR
-  node-dev:
-    container_name: todolist-node-dev
+  frontend:
+    container_name: todolist-frontend-dev
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -82,6 +82,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./frontend:/var/www/html
+      - node_modules_frontend:/var/www/html/node_modules
     working_dir: /var/www/html
     stdin_open: true
     tty: true
@@ -97,3 +98,5 @@ volumes:
   apptodolist:
     driver: local
     name: apptodolist
+  node_modules_frontend:
+    driver: local
