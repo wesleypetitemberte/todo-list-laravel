@@ -1,0 +1,28 @@
+<header class="shadow">
+    <div class="container d-flex flex-row justify-content-between">
+        <a href="#!/" aria-label="Home">
+            <img src="public/images/main-logo.png" alt="Todo List" width="200" height="60" class="img-fluid">
+        </a>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav d-flex gap-4">
+                        <li class="nav-item" ng-if="$root.isAuthenticated">
+                            <button type="button" ng-click="$ctrl.logout()" class="nav-link fw-bold btn btn-link" title="Sair">Sair</button>
+                        </li>
+                        <li class="nav-item" ng-if="!$root.isAuthenticated">
+                            <a class="nav-link fw-bold" href="#!/login" title="Login">Login</a>
+                        </li>
+                        <li class="nav-item" ng-if="!$root.isAuthenticated">
+                            <a class="nav-link fw-bold" href="#!/registrar" title="Registrar">Registrar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

@@ -1,19 +1,19 @@
 <section class="container mt-4" ng-controller="HomeController">
     <h1 class="text-center mb-4">Cadastro de Tarefas</h1>
 
-    <form ng-submit="saveTask()" class="mb-4">
+    <form ng-submit="saveTask()" name="formSaveTask" class="mb-4">
         <div class="row">
         <div class="col-12 mb-lg-0 mb-4 col-lg-4">
             <label for="title">Título:</label>
-            <input type="text" ng-model="task.title" name="title" class="form-control mb-0" placeholder="Título do tarefa" required />
+            <input type="text" ng-model="task.title" name="title" class="form-control mb-0" placeholder="Título do tarefa" ng-required="true"/>
         </div>
         <div class="col-12 mb-lg-0 mb-4 col-lg-4">
             <label for="description">Descrição:</label>
-            <input type="text" ng-model="task.description" name="description" class="form-control mb-0" placeholder="Descrição do tarefa" required />
+            <input type="text" ng-model="task.description" name="description" class="form-control mb-0" placeholder="Descrição do tarefa" ng-required="true"/>
         </div>
         <div class="col-12 mb-lg-0 mb-4 col-lg-2">
             <label for="due_date">Data Limite:</label>
-            <input type="date" id="due_date" ng-model="task.due_date" name="due_date" class="form-control mb-0" required />
+            <input type="date" id="due_date" ng-model="task.due_date" name="due_date" class="form-control mb-0" min="{{today | date:'yyyy-MM-dd'}}" ng-required="true"/>
         </div>
         <div class="col-12 col-lg-2 d-flex align-items-end">
             <button type="submit" class="btn btn-success w-100" title="{{ editMode ? 'Atualizar' : 'Adicionar'}} tarefa">

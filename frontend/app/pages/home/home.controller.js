@@ -8,6 +8,7 @@ angular.module('todoApp').controller('HomeController', ['$scope', 'TaskService',
     $scope.task = angular.copy($scope.resetTask);
     $scope.editMode = false;
     $scope.editId = null;
+    $scope.today = new Date();
 
     // Função para verificar autenticação
     const checkAuthentication = function() {

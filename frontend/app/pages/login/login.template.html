@@ -1,14 +1,26 @@
 <section class="container mt-4" ng-controller="LoginController">
     <h1 class="text-center mb-4">Login</h1>
 
-    <login-form 
-        fields="fields"
-        data="user"
-        on-submit="login(data)"
-        button-title="Entrar">
-    </login-form>
+    <form ng-submit="login()" name="loginForm" class="mb-4 w-25">
+        <div class="row flex-column">
+            <div class="col-12 mb-4">
+                <label for="email">Email</label>
+                <input type="email" id="email" ng-model="user.email" name="email" class="form-control mb-0" placeholder="Digite seu email" ng-required="true" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/"/>
+            </div>
+            <div class="col-12 mb-4">
+                <label for="password">Senha</label>
+                <input type="password" id="password" ng-model="user.password" name="password" class="form-control mb-0" placeholder="Digite sua senha" ng-required="true" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/"/>
+            </div>
+            <div class="col-12 d-flex align-items-end">
+                <button type="submit" class="btn btn-success w-100" title="Entrar">Entrar</button>
+            </div>
+        </div>
+    </form>
 
-    <span ng-if="showMessage" class="text-center mb-2 text-danger">{{messageFeedback}}</span>
+    <span ng-show="loginForm.email.$error.pattern" class="text-center mb-2 text-danger">Por favor, insira um e-mail válido.</span>
+    <span ng-show="loginForm.password.$error.pattern" class="text-center mb-2 text-danger">A senha deve ter pelo menos 6 caracteres, incluindo letras e números!</span>
+    <span ng-show="$ctrl.data.password !== $ctrl.data.password_confirmation" class="text-center mb-2 text-danger">Senhas devem ser iguais!</span>
+    <span ng-show="showMessageError" class="text-center mb-2 text-danger">{{messageError}}</span>
 
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
